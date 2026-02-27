@@ -75,25 +75,27 @@
     <a href="#">PHILOSOPHY</a>
   </nav>
 
-  <script>
+    <script>
 const canvas = document.getElementById("stars");
 const ctx = canvas.getContext("2d");
 
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
+let centerX = canvas.width / 2;
+let centerY = canvas.height / 2;
+
 let stars = [];
 
 function createStar() {
   return {
-    x: Math.random() * canvas.width,
-    y: Math.random() * canvas.height,
-    size: Math.random() * 2,
-    speed: Math.random() * 2 + 0.5
+    x: (Math.random() - 0.5) * canvas.width,
+    y: (Math.random() - 0.5) * canvas.height,
+    z: Math.random() * canvas.width
   };
 }
 
-for (let i = 0; i < 200; i++) {
+for (let i = 0; i < 400; i++) {
   stars.push(createStar());
 }
 
@@ -101,22 +103,24 @@ function draw() {
   ctx.fillStyle = "#0f172a";
   ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-  stars.forEach((star, index) => {
-    star.x -= star.speed; // 向左飄（代表我們往前飛）
+  stars.forEach((star, i) => {
+    star.z -= 2;  // 控制前進速度
 
-    ctx.fillStyle = "white";
-    ctx.globalAlpha = 0.8;
-    ctx.beginPath();
-    ctx.arc(star.x, star.y, star.size, 0, Math.PI * 2);
-    ctx.fill();
+    if (star.z <= 0) {
+      stars[i] = createStar();
+      stars[i].z = canvas.width;
+    }
 
-    if (star.x < 0) {
-      stars[index] = {
-        x: canvas.width,
-        y: Math.random() * canvas.height,
-        size: Math.random() * 2,
-        speed: Math.random() * 2 + 0.5
-      };
+    let k = 128.0 / star.z;
+    let x = star.x * k + centerX;
+    let y = star.y * k + centerY;
+
+    if (x >= 0 && x <= canvas.width && y >= 0 && y <= canvas.height) {
+      let size = (1 - star.z / canvas.width) * 3;
+      ctx.fillStyle = "white";
+      ctx.beginPath();
+      ctx.arc(x, y, size, 0, Math.PI * 2);
+      ctx.fill();
     }
   });
 
