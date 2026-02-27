@@ -7,6 +7,7 @@
       margin: 0;
       height: 100vh;
       display: flex;
+      flex-direction: column;
       justify-content: center;
       align-items: center;
       background-color: #0f172a;
@@ -31,6 +32,26 @@
       z-index: 1;
     }
 
+    nav {
+      position: absolute;
+      bottom: 40px;
+      display: flex;
+      gap: 40px;
+      z-index: 1;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: #94a3b8;
+      font-size: 14px;
+      letter-spacing: 2px;
+      transition: 0.3s;
+    }
+
+    nav a:hover {
+      color: white;
+    }
+
     canvas {
       position: fixed;
       top: 0;
@@ -47,6 +68,12 @@
     <h1>VD Engine 2026</h1>
     <p>Human × AI Co-Engineering Core</p>
   </div>
+
+  <nav>
+    <a href="#">LOG</a>
+    <a href="#">PROJECT</a>
+    <a href="#">PHILOSOPHY</a>
+  </nav>
 
   <script>
     const canvas = document.getElementById("stars");
