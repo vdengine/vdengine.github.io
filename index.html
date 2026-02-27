@@ -75,60 +75,66 @@
     <a href="#">PHILOSOPHY</a>
   </nav>
 
-    <script>
-      const canvas = document.getElementById("stars");
-      const ctx = canvas.getContext("2d");
+  <script>
+const canvas = document.getElementById("stars");
+const ctx = canvas.getContext("2d");
 
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
 
-      let centerX = canvas.width / 2;
-      let centerY = canvas.height / 2;
+let centerX = canvas.width / 2;
+let centerY = canvas.height / 2;
 
-      let stars = [];
+let stars = [];
 
-      function createStar() {
-        return {
-          x: (Math.random() - 0.5) * canvas.width,
-          y: (Math.random() - 0.5) * canvas.height,
-          z: Math.random() * canvas.width,
-          color: Math.random() > 0.9 ? "#a8c8ff" : "#ffffff"
-        };
-      }
+function createStar() {
+  return {
+    x: (Math.random() - 0.5) * canvas.width,
+    y: (Math.random() - 0.5) * canvas.height,
+    z: Math.random() * canvas.width,
+    color: Math.random() > 0.9 ? "#a8c8ff" : "#ffffff"
+  };
+}
 
-      for (let i = 0; i < 400; i++) {
-        stars.push(createStar());
-      }
+for (let i = 0; i < 400; i++) {
+  stars.push(createStar());
+}
 
-      function draw() {
-        ctx.fillStyle = star.color;
-        ctx.fillRect(0, 0, canvas.width, canvas.height);
+function draw() {
 
-        stars.forEach((star, i) => {
-          star.z -= 2;  // 控制前進速度
+  // 清空背景
+  ctx.fillStyle = "#000000";
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-          if (star.z <= 0) {
-            stars[i] = createStar();
-            stars[i].z = canvas.width;
-          }
+  stars.forEach((star, i) => {
 
-          let k = 128.0 / star.z;
-          let x = star.x * k + centerX;
-          let y = star.y * k + centerY;
+    star.z -= 2;
 
-          if (x >= 0 && x <= canvas.width && y >= 0 && y <= canvas.height) {
-            let size = (1 - star.z / canvas.width) * 3;
-            ctx.fillStyle = "white";
-            ctx.beginPath();
-            ctx.arc(x, y, size, 0, Math.PI * 2);
-            ctx.fill();
-          }
-        });
+    if (star.z <= 0) {
+      stars[i] = createStar();
+      stars[i].z = canvas.width;
+    }
 
-        requestAnimationFrame(draw);
-      }
+    let k = 128.0 / star.z;
+    let x = star.x * k + centerX;
+    let y = star.y * k + centerY;
 
-      draw();
+    if (x >= 0 && x <= canvas.width && y >= 0 && y <= canvas.height) {
+
+      let size = (1 - star.z / canvas.width) * 3;
+
+      ctx.fillStyle = star.color;   // ✅ 用星星自己的顏色
+      ctx.beginPath();
+      ctx.arc(x, y, size, 0, Math.PI * 2);
+      ctx.fill();
+    }
+
+  });
+
+  requestAnimationFrame(draw);
+}
+
+draw();
 </script>
 
 </body>
