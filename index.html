@@ -45,46 +45,50 @@
   </div>
 
   <script>
-    const canvas = document.getElementById("stars");
-    const ctx = canvas.getContext("2d");
+const canvas = document.getElementById("stars");
+const ctx = canvas.getContext("2d");
 
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
 
-    let stars = [];
+let centerX = canvas.width / 2;
+let centerY = canvas.height / 2;
 
-    for (let i = 0; i < 40; i++) {
-      stars.push({
-        x: Math.random() * canvas.width,
-        y: Math.random() * canvas.height,
-        size: Math.random() * 2,
-        speed: Math.random() * 0.3 + 0.1
-      });
+let stars = [];
+
+for (let i = 0; i < 200; i++) {
+  stars.push({
+    x: centerX,
+    y: centerY,
+    vx: (Math.random() - 0.5) * 4,
+    vy: (Math.random() - 0.5) * 4,
+    size: Math.random() * 2
+  });
+}
+
+function draw() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  ctx.fillStyle = "white";
+
+  stars.forEach(star => {
+    ctx.globalAlpha = 0.6;
+    ctx.beginPath();
+    ctx.arc(star.x, star.y, star.size, 0, Math.PI * 2);
+    ctx.fill();
+
+    star.y += star.speed;
+
+    if (star.y > canvas.height) {
+      star.y = 0;
+      star.x = Math.random() * canvas.width;
     }
+  });
 
-    function draw() {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      ctx.fillStyle = "white";
+  requestAnimationFrame(draw);
+}
 
-      stars.forEach(star => {
-        ctx.globalAlpha = 0.6;
-        ctx.beginPath();
-        ctx.arc(star.x, star.y, star.size, 0, Math.PI * 2);
-        ctx.fill();
-
-        star.y += star.speed;
-
-        if (star.y > canvas.height) {
-          star.y = 0;
-          star.x = Math.random() * canvas.width;
-        }
-      });
-
-      requestAnimationFrame(draw);
-    }
-
-    draw();
-  </script>
+draw();
+</script>
 
 </body>
 </html>
