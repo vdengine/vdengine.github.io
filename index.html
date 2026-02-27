@@ -9,10 +9,11 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      background-color: #0f172a; /* 深藍灰 */
+      background-color: #0f172a;
       color: #e2e8f0;
       font-family: Consolas, monospace;
       text-align: center;
+      overflow: hidden;
     }
 
     h1 {
@@ -25,12 +26,65 @@
       opacity: 0.7;
       font-size: 16px;
     }
+
+    canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: -1;
+    }
   </style>
 </head>
+
 <body>
+  <canvas id="stars"></canvas>
+
   <div>
     <h1>VD Engine 2026</h1>
     <p>Human × AI Co-Engineering Core</p>
   </div>
+
+  <script>
+    const canvas = document.getElementById("stars");
+    const ctx = canvas.getContext("2d");
+
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    let stars = [];
+
+    for (let i = 0; i < 40; i++) {
+      stars.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        size: Math.random() * 2,
+        speed: Math.random() * 0.3 + 0.1
+      });
+    }
+
+    function draw() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.fillStyle = "white";
+
+      stars.forEach(star => {
+        ctx.globalAlpha = 0.6;
+        ctx.beginPath();
+        ctx.arc(star.x, star.y, star.size, 0, Math.PI * 2);
+        ctx.fill();
+
+        star.y += star.speed;
+
+        if (star.y > canvas.height) {
+          star.y = 0;
+          star.x = Math.random() * canvas.width;
+        }
+      });
+
+      requestAnimationFrame(draw);
+    }
+
+    draw();
+  </script>
+
 </body>
 </html>
