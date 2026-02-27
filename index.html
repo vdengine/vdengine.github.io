@@ -91,7 +91,8 @@
         return {
           x: (Math.random() - 0.5) * canvas.width,
           y: (Math.random() - 0.5) * canvas.height,
-          z: Math.random() * canvas.width
+          z: Math.random() * canvas.width,
+          color: Math.random() > 0.9 ? "#a8c8ff" : "#ffffff"
         };
       }
 
@@ -100,7 +101,7 @@
       }
 
       function draw() {
-        ctx.fillStyle = "#000000";
+        ctx.fillStyle = star.color;
         ctx.fillRect(0, 0, canvas.width, canvas.height);
 
         stars.forEach((star, i) => {
