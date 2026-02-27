@@ -1,58 +1,111 @@
-<script>
-const canvas = document.getElementById("stars");
-const ctx = canvas.getContext("2d");
-
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
-
-let centerX = canvas.width / 2;
-let centerY = canvas.height / 2;
-
-let stars = [];
-
-for (let i = 0; i < 200; i++) {
-  stars.push(createStar());
-}
-
-function createStar() {
-  let angle = Math.random() * Math.PI * 2;
-  let speed = Math.random() * 2 + 0.5;
-
-  return {
-    x: centerX,
-    y: centerY,
-    vx: Math.cos(angle) * speed,
-    vy: Math.sin(angle) * speed,
-    size: Math.random() * 2
-  };
-}
-
-function draw() {
-  ctx.fillStyle = "#0f172a";
-  ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-  stars.forEach((star, index) => {
-    star.x += star.vx;
-    star.y += star.vy;
-
-    ctx.fillStyle = "white";
-    ctx.globalAlpha = 0.8;
-    ctx.beginPath();
-    ctx.arc(star.x, star.y, star.size, 0, Math.PI * 2);
-    ctx.fill();
-
-    if (
-      star.x < 0 ||
-      star.x > canvas.width ||
-      star.y < 0 ||
-      star.y > canvas.height
-    ) {
-      stars[index] = createStar();
+<!DOCTYPE html>
+<html>
+<head>
+  <title>VD Engine</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: #0f172a;
+      color: #e2e8f0;
+      font-family: Consolas, monospace;
+      text-align: center;
+      overflow: hidden;
     }
-  });
 
-  requestAnimationFrame(draw);
-}
+    h1 {
+      font-size: 40px;
+      letter-spacing: 2px;
+      margin-bottom: 10px;
+      position: relative;
+      z-index: 1;
+    }
 
-draw();
-</script>
+    p {
+      opacity: 0.7;
+      font-size: 16px;
+      position: relative;
+      z-index: 1;
+    }
+
+    canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 0;
+    }
+  </style>
+</head>
+
+<body>
+  <canvas id="stars"></canvas>
+
+  <div>
+    <h1>VD Engine 2026</h1>
+    <p>Human × AI Co-Engineering Core</p>
+  </div>
+
+  <script>
+    const canvas = document.getElementById("stars");
+    const ctx = canvas.getContext("2d");
+
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    let centerX = canvas.width / 2;
+    let centerY = canvas.height / 2;
+
+    let stars = [];
+
+    function createStar() {
+      let angle = Math.random() * Math.PI * 2;
+      let speed = Math.random() * 1.5 + 0.3;
+
+      return {
+        x: centerX,
+        y: centerY,
+        vx: Math.cos(angle) * speed,
+        vy: Math.sin(angle) * speed,
+        size: Math.random() * 2
+      };
+    }
+
+    for (let i = 0; i < 150; i++) {
+      stars.push(createStar());
+    }
+
+    function draw() {
+      ctx.fillStyle = "#0f172a";
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      stars.forEach((star, index) => {
+        star.x += star.vx;
+        star.y += star.vy;
+
+        ctx.fillStyle = "white";
+        ctx.globalAlpha = 0.8;
+        ctx.beginPath();
+        ctx.arc(star.x, star.y, star.size, 0, Math.PI * 2);
+        ctx.fill();
+
+        if (
+          star.x < 0 ||
+          star.x > canvas.width ||
+          star.y < 0 ||
+          star.y > canvas.height
+        ) {
+          stars[index] = createStar();
+        }
+      });
+
+      requestAnimationFrame(draw);
+    }
+
+    draw();
+  </script>
+
+</body>
+</html>
