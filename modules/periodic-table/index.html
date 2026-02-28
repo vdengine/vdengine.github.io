@@ -1,9 +1,35 @@
+<!DOCTYPE html>
+<html>
+
 <head>
+  <meta charset="UTF-8">
+  <title>Periodic Table</title>
+
   <style>
     .periodic-table {
       display: grid;
       grid-template-columns: repeat(18, 60px);
       gap: 4px;
     }
+
+    .cell {
+      width: 60px;
+      height: 60px;
+      background: #1e293b;
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
   </style>
 </head>
+
+<body>
+  <div class="periodic-table">
+    <div class="cell">1</div>
+    <div class="cell">2</div>
+    <div class="cell">3</div>
+  </div>
+</body>
+
+</html>
