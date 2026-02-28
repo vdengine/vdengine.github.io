@@ -39,7 +39,7 @@ function animate() {
   stars.forEach(star => {
 
     // 越近速度越快
-    star.z -= BASE_SPEED + (1 - star.z / width) * 3;
+    star.z -= 0.3 + (1 - star.z / width) * 0.8;
 
     if (star.z <= 0) {
       star.z = width;
@@ -55,7 +55,8 @@ function animate() {
       const size = (1 - star.z / width) * 3;
       ctx.fillStyle = getColor(star.z);
       ctx.beginPath();
-      ctx.arc(x, y, size, 0, Math.PI * 2);
+      // 大小
+      ctx.arc(x, y, (1 - star.z / width) * 1.2, 0, Math.PI * 2);
       ctx.fill();
     }
   });
