@@ -1,58 +1,76 @@
-const canvas = document.getElementById('stars');
-const ctx = canvas.getContext('2d');
+const canvas = document.getElementById("stars");
+const ctx = canvas.getContext("2d");
 
 let width, height;
 let stars = [];
-const STAR_COUNT = 300;
+const STAR_COUNT = 350;
+const BASE_SPEED = 0.6;
 
-function init() {
-    width = window.innerWidth;
-    height = window.innerHeight;
-    canvas.width = width;
-    canvas.height = height;
+function resize() {
+  width = window.innerWidth;
+  height = window.innerHeight;
+  canvas.width = width;
+  canvas.height = height;
+}
 
-    stars = [];
+function createStars() {
+  stars = [];
+  for (let i = 0; i < STAR_COUNT; i++) {
+    stars.push({
+      x: (Math.random() - 0.5) * width,
+      y: (Math.random() - 0.5) * height,
+      z: Math.random() * width,
+    });
+  }
+}
 
-    for (let i = 0; i < STAR_COUNT; i++) {
-        stars.push({
-            x: Math.random() * width,
-            y: Math.random() * height,
-            z: Math.random() * width, // 深度
-            size: Math.random() * 2
-        });
-    }
+function getStarColor(z) {
+  const depthRatio = z / width;
+
+  if (depthRatio > 0.7) {
+    return "rgba(20,40,120,0.8)";     // 深藍（遠）
+  } else if (depthRatio > 0.4) {
+    return "rgba(120,160,255,0.9)";   // 藍白（中）
+  } else {
+    return "rgba(255,255,255,1)";     // 白色（近）
+  }
 }
 
 function animate() {
-    ctx.fillStyle = "rgba(0, 0, 0, 0.4)";
-    ctx.fillRect(0, 0, width, height);
+  ctx.fillStyle = "rgba(0,0,0,0.5)";
+  ctx.fillRect(0, 0, width, height);
 
-    ctx.fillStyle = "#ffffff";
+  stars.forEach(star => {
+    const speed = BASE_SPEED + (1 - star.z / width) * 2;
+    star.z -= speed;
 
-    stars.forEach(star => {
-        star.z -= 1;
+    if (star.z <= 0) {
+      star.z = width;
+      star.x = (Math.random() - 0.5) * width;
+      star.y = (Math.random() - 0.5) * height;
+    }
 
-        if (star.z <= 0) {
-            star.z = width;
-            star.x = Math.random() * width;
-            star.y = Math.random() * height;
-        }
+    const scale = 128 / star.z;
+    const x = star.x * scale + width / 2;
+    const y = star.y * scale + height / 2;
 
-        const k = 128 / star.z;
-        const px = star.x * k + width / 2;
-        const py = star.y * k + height / 2;
+    if (x >= 0 && x <= width && y >= 0 && y <= height) {
+      const size = (1 - star.z / width) * 3;
+      ctx.fillStyle = getStarColor(star.z);
+      ctx.beginPath();
+      ctx.arc(x, y, size, 0, Math.PI * 2);
+      ctx.fill();
+    }
+  });
 
-        if (px >= 0 && px <= width && py >= 0 && py <= height) {
-            const size = (1 - star.z / width) * 2;
-            ctx.beginPath();
-            ctx.arc(px, py, size, 0, Math.PI * 2);
-            ctx.fill();
-        }
-    });
-
-    requestAnimationFrame(animate);
+  requestAnimationFrame(animate);
 }
 
-window.addEventListener('resize', init);
-init();
+window.addEventListener("resize", () => {
+  resize();
+  createStars();
+});
+
+resize();
+createStars();
 animate();
