@@ -11,7 +11,7 @@
       background-color: #000;
       color: #e2e8f0;
       font-family: 'Segoe UI', Consolas, monospace;
-      padding: 40px;
+      padding: 40px 20px;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -40,15 +40,14 @@
       transition: color 0.2s;
     }
 
-    .back-link:hover {
-      color: #3b82f6;
-    }
+    .back-link:hover { color: #3b82f6; }
 
     .periodic-grid {
       display: grid;
       grid-template-columns: repeat(18, 1fr);
       gap: 6px;
       background-color: #000;
+      margin-bottom: 20px;
     }
 
     .element {
@@ -69,27 +68,17 @@
       z-index: 10;
     }
 
-    .number {
-      font-size: 10px;
-      text-align: left;
-      color: #94a3b8;
-    }
+    .number { font-size: 10px; text-align: left; color: #94a3b8; }
+    .symbol { font-size: 1.2vw; font-weight: bold; text-align: center; color: #f8fafc; }
+    .mass { font-size: 9px; text-align: center; color: #64748b; }
+    .empty { visibility: hidden; }
 
-    .symbol {
-      font-size: 1.2vw;
-      font-weight: bold;
-      text-align: center;
-      color: #f8fafc;
-    }
-
-    .mass {
-      font-size: 9px;
-      text-align: center;
-      color: #64748b;
-    }
-
-    .empty {
-      visibility: hidden;
+    .section-label {
+      font-size: 14px;
+      opacity: 0.6;
+      margin: 40px 0 10px 0;
+      letter-spacing: 2px;
+      text-transform: uppercase;
     }
 
     @media (max-width: 768px) {
@@ -204,6 +193,48 @@
       <div class="element"><div class="number">116</div><div class="symbol">Lv</div><div class="mass">293</div></div>
       <div class="element"><div class="number">117</div><div class="symbol">Ts</div><div class="mass">294</div></div>
       <div class="element"><div class="number">118</div><div class="symbol">Og</div><div class="mass">294</div></div>
+    </div>
+
+    <div class="section-label">Lanthanides (57–71)</div>
+    <div class="periodic-grid">
+      <div class="empty"></div><div class="empty"></div>
+      <div class="element"><div class="number">57</div><div class="symbol">La</div><div class="mass">138.91</div></div>
+      <div class="element"><div class="number">58</div><div class="symbol">Ce</div><div class="mass">140.12</div></div>
+      <div class="element"><div class="number">59</div><div class="symbol">Pr</div><div class="mass">140.91</div></div>
+      <div class="element"><div class="number">60</div><div class="symbol">Nd</div><div class="mass">144.24</div></div>
+      <div class="element"><div class="number">61</div><div class="symbol">Pm</div><div class="mass">145</div></div>
+      <div class="element"><div class="number">62</div><div class="symbol">Sm</div><div class="mass">150.36</div></div>
+      <div class="element"><div class="number">63</div><div class="symbol">Eu</div><div class="mass">151.96</div></div>
+      <div class="element"><div class="number">64</div><div class="symbol">Gd</div><div class="mass">157.25</div></div>
+      <div class="element"><div class="number">65</div><div class="symbol">Tb</div><div class="mass">158.93</div></div>
+      <div class="element"><div class="number">66</div><div class="symbol">Dy</div><div class="mass">162.50</div></div>
+      <div class="element"><div class="number">67</div><div class="symbol">Ho</div><div class="mass">164.93</div></div>
+      <div class="element"><div class="number">68</div><div class="symbol">Er</div><div class="mass">167.26</div></div>
+      <div class="element"><div class="number">69</div><div class="symbol">Tm</div><div class="mass">168.93</div></div>
+      <div class="element"><div class="number">70</div><div class="symbol">Yb</div><div class="mass">173.05</div></div>
+      <div class="element"><div class="number">71</div><div class="symbol">Lu</div><div class="mass">174.97</div></div>
+      <div class="empty"></div>
+    </div>
+
+    <div class="section-label">Actinides (89–103)</div>
+    <div class="periodic-grid">
+      <div class="empty"></div><div class="empty"></div>
+      <div class="element"><div class="number">89</div><div class="symbol">Ac</div><div class="mass">227</div></div>
+      <div class="element"><div class="number">90</div><div class="symbol">Th</div><div class="mass">232.04</div></div>
+      <div class="element"><div class="number">91</div><div class="symbol">Pa</div><div class="mass">231.04</div></div>
+      <div class="element"><div class="number">92</div><div class="symbol">U</div><div class="mass">238.03</div></div>
+      <div class="element"><div class="number">93</div><div class="symbol">Np</div><div class="mass">237</div></div>
+      <div class="element"><div class="number">94</div><div class="symbol">Pu</div><div class="mass">244</div></div>
+      <div class="element"><div class="number">95</div><div class="symbol">Am</div><div class="mass">243</div></div>
+      <div class="element"><div class="number">96</div><div class="symbol">Cm</div><div class="mass">247</div></div>
+      <div class="element"><div class="number">97</div><div class="symbol">Bk</div><div class="mass">247</div></div>
+      <div class="element"><div class="number">98</div><div class="symbol">Cf</div><div class="mass">251</div></div>
+      <div class="element"><div class="number">99</div><div class="symbol">Es</div><div class="mass">252</div></div>
+      <div class="element"><div class="number">100</div><div class="symbol">Fm</div><div class="mass">257</div></div>
+      <div class="element"><div class="number">101</div><div class="symbol">Md</div><div class="mass">258</div></div>
+      <div class="element"><div class="number">102</div><div class="symbol">No</div><div class="mass">259</div></div>
+      <div class="element"><div class="number">103</div><div class="symbol">Lr</div><div class="mass">266</div></div>
+      <div class="empty"></div>
     </div>
   </div>
 
