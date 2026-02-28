@@ -4,7 +4,6 @@ const ctx = canvas.getContext("2d");
 let width, height;
 let stars = [];
 const STAR_COUNT = 400;
-const BASE_SPEED = 0.5;
 
 function resize() {
   width = window.innerWidth;
@@ -19,17 +18,9 @@ function createStars() {
     stars.push({
       x: Math.random() * width,
       y: Math.random() * height,
-      z: Math.random() * width
+      depth: Math.random(), // 0 ~ 1
     });
   }
-}
-
-function getStarColor(z) {
-  const depth = z / width;
-
-  if (depth > 0.7) return "rgba(20,40,120,0.8)";
-  if (depth > 0.4) return "rgba(120,160,255,0.9)";
-  return "rgba(255,255,255,1)";
 }
 
 function animate() {
@@ -37,18 +28,31 @@ function animate() {
   ctx.fillRect(0, 0, width, height);
 
   stars.forEach(star => {
-    const speed = BASE_SPEED + (1 - star.z / width) * 2;
-    star.z -= speed;
 
-    if (star.z <= 0) {
-      star.z = width;
+    // 越靠近（depth 越小）速度越快
+    const speed = 0.5 + (1 - star.depth) * 2;
+
+    star.depth -= 0.003 * speed;
+
+    if (star.depth <= 0) {
+      star.depth = 1;
       star.x = Math.random() * width;
       star.y = Math.random() * height;
     }
 
-    const size = (1 - star.z / width) * 3;
+    const size = (1 - star.depth) * 3;
 
-    ctx.fillStyle = getStarColor(star.z);
+    // 深度顏色
+    let color;
+    if (star.depth > 0.7) {
+      color = "rgba(20,40,120,0.8)";
+    } else if (star.depth > 0.4) {
+      color = "rgba(120,160,255,0.9)";
+    } else {
+      color = "rgba(255,255,255,1)";
+    }
+
+    ctx.fillStyle = color;
     ctx.beginPath();
     ctx.arc(star.x, star.y, size, 0, Math.PI * 2);
     ctx.fill();
