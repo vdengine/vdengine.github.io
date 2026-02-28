@@ -1,10 +1,84 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Periodic Table</title>
+  <meta charset="UTF-8">
+  <title>VD Engine</title>
+
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      background-color: #000000;
+      color: #e2e8f0;
+      font-family: Consolas, monospace;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    h1 {
+      font-size: 40px;
+      letter-spacing: 2px;
+      margin-bottom: 10px;
+      position: relative;
+      z-index: 1;
+    }
+
+    p {
+      opacity: 0.7;
+      font-size: 16px;
+      position: relative;
+      z-index: 1;
+    }
+
+    nav {
+      position: absolute;
+      bottom: 40px;
+      display: flex;
+      gap: 40px;
+      z-index: 1;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: #94a3b8;
+      font-size: 14px;
+      letter-spacing: 2px;
+      transition: 0.3s;
+    }
+
+    nav a:hover {
+      color: white;
+    }
+
+    canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 0;
+    }
+  </style>
 </head>
-<body style="background:black;color:white;font-family:Consolas;">
-  <h1>Periodic Table Module</h1>
-  <a href="/modules/">← Back</a>
+
+<body>
+
+  <canvas id="stars"></canvas>
+
+  <div>
+    <h1>VD Engine 2026</h1>
+    <p>Human × AI Co-Engineering Core</p>
+  </div>
+
+  <nav>
+    <a href="modules/log/index.html">LOG</a>
+    <a href="modules/index.html">PROJECT</a>
+    <a href="modules/philosophy/index.html">PHILOSOPHY</a>
+  </nav>
+
+  <script src="assets/js/starfield.js"></script>
+
 </body>
 </html>
