@@ -1,7 +1,8 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh-TW">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Periodic Table | VD Engine</title>
 
   <style>
@@ -9,110 +10,168 @@
       margin: 0;
       background-color: #000;
       color: #e2e8f0;
-      font-family: Consolas, monospace;
-      padding: 60px 40px;
+      font-family: 'Segoe UI', Consolas, monospace;
+      padding: 40px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1200px;
     }
 
     h1 {
-      font-size: 32px;
-      margin-bottom: 20px;
-      letter-spacing: 2px;
+      font-size: 28px;
+      margin-bottom: 10px;
+      letter-spacing: 4px;
+      color: #fff;
+      border-left: 4px solid #3b82f6;
+      padding-left: 15px;
     }
 
     .back-link {
       display: inline-block;
-      margin-bottom: 40px;
+      margin-bottom: 30px;
       text-decoration: none;
       color: #94a3b8;
       font-size: 14px;
+      transition: color 0.2s;
     }
 
     .back-link:hover {
-      color: white;
+      color: #3b82f6;
     }
 
+    /* 週期表網格設定 */
     .periodic-grid {
-  display: grid;
-  grid-template-columns: repeat(18, 1fr);
-  gap: 6px;
-}
+      display: grid;
+      grid-template-columns: repeat(18, 1fr);
+      gap: 6px;
+      background-color: #000;
+    }
 
-.element {
-  border: 1px solid #1f2937;
-  background-color: #0a0a0a;
-  aspect-ratio: 1 / 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  padding: 6px;
-}
+    .element {
+      border: 1px solid #334155;
+      background-color: #0f172a;
+      aspect-ratio: 1 / 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 8px 4px;
+      transition: all 0.2s ease;
+      cursor: default;
+    }
 
-.number {
-  font-size: 10px;
-  text-align: left;
-  opacity: 0.7;
-}
+    .element:hover {
+      border-color: #3b82f6;
+      background-color: #1e293b;
+      transform: scale(1.05);
+      z-index: 10;
+      box-shadow: 0 0 15px rgba(59, 130, 246, 0.5);
+    }
 
-.symbol {
-  font-size: 20px;
-  font-weight: bold;
-  text-align: center;
-}
+    .number {
+      font-size: 10px;
+      text-align: left;
+      color: #94a3b8;
+    }
 
-.mass {
-  font-size: 10px;
-  text-align: center;
-  opacity: 0.6;
-}
+    .symbol {
+      font-size: 1.2vw; /* 隨視窗大小縮放文字 */
+      font-weight: bold;
+      text-align: center;
+      color: #f8fafc;
+    }
 
-.empty {
-  visibility: hidden;
-}
+    .mass {
+      font-size: 9px;
+      text-align: center;
+      color: #64748b;
+    }
 
+    .empty {
+      visibility: hidden;
+    }
+
+    /* 響應式微調：在小螢幕上縮小間距 */
+    @media (max-width: 768px) {
+      .periodic-grid { gap: 2px; }
+      body { padding: 10px; }
+    }
   </style>
 </head>
+<body>
 
-  <body>
+  <div class="container">
+    <a class="back-link" href="/modules/index.html">← Back to Modules</a>
+    <h1>PERIODIC TABLE</h1>
 
-  <a class="back-link" href="/modules/index.html">← Back to Modules</a>
+    <div class="periodic-grid">
+      <div class="element">
+        <div class="number">1</div>
+        <div class="symbol">H</div>
+        <div class="mass">1.008</div>
+      </div>
+      <div class="empty"></div><div class="empty"></div><div class="empty"></div>
+      <div class="empty"></div><div class="empty"></div><div class="empty"></div>
+      <div class="empty"></div><div class="empty"></div><div class="empty"></div>
+      <div class="empty"></div><div class="empty"></div><div class="empty"></div>
+      <div class="empty"></div><div class="empty"></div><div class="empty"></div>
+      <div class="empty"></div>
+      <div class="element">
+        <div class="number">2</div>
+        <div class="symbol">He</div>
+        <div class="mass">4.0026</div>
+      </div>
 
-  <h1>PERIODIC TABLE</h1>
-
-  <div class="periodic-grid">
-
-    <!-- 第一列 -->
-
-    <div class="element">
-      <div class="number">1</div>
-      <div class="symbol">H</div>
-      <div class="mass">1.008</div>
+      <div class="element">
+        <div class="number">3</div>
+        <div class="symbol">Li</div>
+        <div class="mass">6.94</div>
+      </div>
+      <div class="element">
+        <div class="number">4</div>
+        <div class="symbol">Be</div>
+        <div class="mass">9.0122</div>
+      </div>
+      <div class="empty"></div><div class="empty"></div><div class="empty"></div>
+      <div class="empty"></div><div class="empty"></div><div class="empty"></div>
+      <div class="empty"></div><div class="empty"></div><div class="empty"></div>
+      <div class="empty"></div>
+      <div class="element">
+        <div class="number">5</div>
+        <div class="symbol">B</div>
+        <div class="mass">10.81</div>
+      </div>
+      <div class="element">
+        <div class="number">6</div>
+        <div class="symbol">C</div>
+        <div class="mass">12.011</div>
+      </div>
+      <div class="element">
+        <div class="number">7</div>
+        <div class="symbol">N</div>
+        <div class="mass">14.007</div>
+      </div>
+      <div class="element">
+        <div class="number">8</div>
+        <div class="symbol">O</div>
+        <div class="mass">15.999</div>
+      </div>
+      <div class="element">
+        <div class="number">9</div>
+        <div class="symbol">F</div>
+        <div class="mass">18.998</div>
+      </div>
+      <div class="element">
+        <div class="number">10</div>
+        <div class="symbol">Ne</div>
+        <div class="mass">20.180</div>
+      </div>
     </div>
-
-    <div class="empty"></div>
-    <div class="empty"></div>
-    <div class="empty"></div>
-    <div class="empty"></div>
-    <div class="empty"></div>
-    <div class="empty"></div>
-    <div class="empty"></div>
-    <div class="empty"></div>
-    <div class="empty"></div>
-    <div class="empty"></div>
-    <div class="empty"></div>
-    <div class="empty"></div>
-    <div class="empty"></div>
-    <div class="empty"></div>
-    <div class="empty"></div>
-    <div class="empty"></div>
-
-    <div class="element">
-      <div class="number">2</div>
-      <div class="symbol">He</div>
-      <div class="mass">4.0026</div>
-    </div>
-
   </div>
 
 </body>
-
 </html>
