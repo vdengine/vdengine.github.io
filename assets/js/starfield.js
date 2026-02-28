@@ -3,7 +3,8 @@ const ctx = canvas.getContext("2d");
 
 let width, height;
 let stars = [];
-const STAR_COUNT = 400;
+const STAR_COUNT = 500;
+const BASE_SPEED = 0.8;
 
 function resize() {
   width = window.innerWidth;
@@ -16,46 +17,47 @@ function createStars() {
   stars = [];
   for (let i = 0; i < STAR_COUNT; i++) {
     stars.push({
-      x: Math.random() * width,
-      y: Math.random() * height,
-      depth: Math.random(), // 0 ~ 1
+      x: (Math.random() - 0.5) * width,
+      y: (Math.random() - 0.5) * height,
+      z: Math.random() * width
     });
   }
 }
 
+function getColor(z) {
+  const ratio = z / width;
+
+  if (ratio > 0.7) return "rgba(30,50,150,0.8)";
+  if (ratio > 0.4) return "rgba(120,160,255,0.9)";
+  return "rgba(255,255,255,1)";
+}
+
 function animate() {
-  ctx.fillStyle = "rgba(0,0,0,0.6)";
+  ctx.fillStyle = "rgba(0,0,0,0.5)";
   ctx.fillRect(0, 0, width, height);
 
   stars.forEach(star => {
 
-    // 越靠近（depth 越小）速度越快
-    const speed = 0.5 + (1 - star.depth) * 2;
+    // 越近速度越快
+    star.z -= BASE_SPEED + (1 - star.z / width) * 3;
 
-    star.depth -= 0.003 * speed;
-
-    if (star.depth <= 0) {
-      star.depth = 1;
-      star.x = Math.random() * width;
-      star.y = Math.random() * height;
+    if (star.z <= 0) {
+      star.z = width;
+      star.x = (Math.random() - 0.5) * width;
+      star.y = (Math.random() - 0.5) * height;
     }
 
-    const size = (1 - star.depth) * 3;
+    const scale = 128 / star.z;
+    const x = star.x * scale + width / 2;
+    const y = star.y * scale + height / 2;
 
-    // 深度顏色
-    let color;
-    if (star.depth > 0.7) {
-      color = "rgba(20,40,120,0.8)";
-    } else if (star.depth > 0.4) {
-      color = "rgba(120,160,255,0.9)";
-    } else {
-      color = "rgba(255,255,255,1)";
+    if (x >= 0 && x <= width && y >= 0 && y <= height) {
+      const size = (1 - star.z / width) * 3;
+      ctx.fillStyle = getColor(star.z);
+      ctx.beginPath();
+      ctx.arc(x, y, size, 0, Math.PI * 2);
+      ctx.fill();
     }
-
-    ctx.fillStyle = color;
-    ctx.beginPath();
-    ctx.arc(star.x, star.y, size, 0, Math.PI * 2);
-    ctx.fill();
   });
 
   requestAnimationFrame(animate);
