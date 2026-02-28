@@ -19,18 +19,6 @@
       letter-spacing: 2px;
     }
 
-    .description {
-      opacity: 0.7;
-      margin-bottom: 40px;
-    }
-
-    .module-area {
-      border: 1px solid #1f2937;
-      padding: 40px;
-      min-height: 200px;
-      background-color: #0a0a0a;
-    }
-
     .back-link {
       display: inline-block;
       margin-bottom: 40px;
@@ -42,6 +30,25 @@
     .back-link:hover {
       color: white;
     }
+
+    .periodic-grid {
+      display: grid;
+      grid-template-columns: repeat(18, 1fr);
+      gap: 4px;
+    }
+
+    .element {
+      border: 1px solid #1f2937;
+      padding: 10px;
+      text-align: center;
+      background-color: #0a0a0a;
+      font-size: 14px;
+    }
+
+    .empty {
+      visibility: hidden;
+    }
+
   </style>
 </head>
 
@@ -49,15 +56,30 @@
 
   <a class="back-link" href="/modules/index.html">← Back to Modules</a>
 
-  <h1>PERIODIC TABLE MODULE</h1>
+  <h1>PERIODIC TABLE</h1>
 
-  <div class="description">
-    Interactive chemistry reference and element exploration.
-  </div>
+  <div class="periodic-grid">
 
-  <div class="module-area">
-    <!-- 這裡之後放真正的元素週期表 -->
-    <p>Module content will be implemented here.</p>
+    <!-- 第一列 -->
+    <div class="element">H</div>
+    <div class="empty"></div>
+    <div class="empty"></div>
+    <div class="empty"></div>
+    <div class="empty"></div>
+    <div class="empty"></div>
+    <div class="empty"></div>
+    <div class="empty"></div>
+    <div class="empty"></div>
+    <div class="empty"></div>
+    <div class="empty"></div>
+    <div class="empty"></div>
+    <div class="empty"></div>
+    <div class="empty"></div>
+    <div class="empty"></div>
+    <div class="empty"></div>
+    <div class="empty"></div>
+    <div class="element">He</div>
+
   </div>
 
 </body>
