@@ -1,6 +1,9 @@
-console.log("PERIODIC JS RUNNING");
-const test = document.createElement("div");
-test.style.width = "100px";
-test.style.height = "100px";
-test.style.background = "red";
-document.body.appendChild(test);
+for (let i = 0; i < 50; i++) {
+  const box = document.createElement("div");
+  box.style.width = "40px";
+  box.style.height = "40px";
+  box.style.background = "#66ccff";
+  box.style.display = "inline-block";
+  box.style.margin = "4px";
+  document.body.appendChild(box);
+}
