@@ -1,36 +1,3 @@
-<div class="container">
-  <a class="back-link" href="/modules/index.html">← Back to Modules</a>
-  <h1>PERIODIC TABLE</h1>
-
-  <div id="periodic-grid" class="periodic-grid"></div>
+<div class="module-area">
+    <p>Module content will be implemented here.</p>
 </div>
-
-<script>
-const elements = [
-  {n:1,s:"H",m:"1.008",c:"s"},
-  {n:2,s:"He",m:"4.0026",c:"p"},
-  {n:3,s:"Li",m:"6.94",c:"s"},
-  {n:4,s:"Be",m:"9.0122",c:"s"},
-  {n:5,s:"B",m:"10.81",c:"p"},
-  {n:6,s:"C",m:"12.011",c:"p"},
-  {n:7,s:"N",m:"14.007",c:"p"},
-  {n:8,s:"O",m:"15.999",c:"p"},
-  {n:9,s:"F",m:"18.998",c:"p"},
-  {n:10,s:"Ne",m:"20.180",c:"p"},
-];
-
-const grid = document.getElementById("periodic-grid");
-
-elements.forEach(el => {
-  const div = document.createElement("div");
-  div.className = "element " + el.c;
-
-  div.innerHTML = `
-    <div class="number">${el.n}</div>
-    <div class="symbol">${el.s}</div>
-    <div class="mass">${el.m}</div>
-  `;
-
-  grid.appendChild(div);
-});
-</script>
