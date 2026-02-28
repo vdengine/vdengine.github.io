@@ -2,83 +2,101 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>VD Engine</title>
+  <title>VD Engine - Modules</title>
 
   <style>
     body {
       margin: 0;
-      height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      background-color: #000000;
+      background-color: #000;
       color: #e2e8f0;
       font-family: Consolas, monospace;
-      text-align: center;
-      overflow: hidden;
+      padding: 60px 40px;
     }
 
     h1 {
-      font-size: 40px;
+      font-size: 32px;
+      margin-bottom: 40px;
       letter-spacing: 2px;
+    }
+
+    .module-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 30px;
+    }
+
+    .module-card {
+      border: 1px solid #1f2937;
+      padding: 20px;
+      transition: 0.3s;
+      background-color: #0a0a0a;
+    }
+
+    .module-card:hover {
+      border-color: #66ccff;
+      transform: translateY(-5px);
+    }
+
+    .module-card h3 {
+      margin-top: 0;
       margin-bottom: 10px;
-      position: relative;
-      z-index: 1;
     }
 
-    p {
+    .module-card p {
+      font-size: 14px;
       opacity: 0.7;
-      font-size: 16px;
-      position: relative;
-      z-index: 1;
     }
 
-    nav {
-      position: absolute;
-      bottom: 40px;
-      display: flex;
-      gap: 40px;
-      z-index: 1;
+    .module-card a {
+      display: inline-block;
+      margin-top: 10px;
+      text-decoration: none;
+      color: #66ccff;
+      font-size: 14px;
     }
 
-    nav a {
+    .back-link {
+      display: inline-block;
+      margin-bottom: 40px;
       text-decoration: none;
       color: #94a3b8;
       font-size: 14px;
-      letter-spacing: 2px;
-      transition: 0.3s;
     }
 
-    nav a:hover {
+    .back-link:hover {
       color: white;
     }
 
-    canvas {
-      position: fixed;
-      top: 0;
-      left: 0;
-      z-index: 0;
-    }
   </style>
 </head>
 
 <body>
 
-  <canvas id="stars"></canvas>
+  <a class="back-link" href="../index.html">← Back to VD Engine</a>
 
-  <div>
-    <h1>VD Engine 2026</h1>
-    <p>Human × AI Co-Engineering Core</p>
+  <h1>PROJECT MODULES</h1>
+
+  <div class="module-grid">
+
+    <div class="module-card">
+      <h3>Periodic Table</h3>
+      <p>Interactive chemistry reference and element exploration.</p>
+      <a href="periodic-table/index.html">Enter Module →</a>
+    </div>
+
+    <div class="module-card">
+      <h3>Chemistry Lab</h3>
+      <p>Future simulation experiments and reaction modeling.</p>
+      <a href="#">Coming Soon</a>
+    </div>
+
+    <div class="module-card">
+      <h3>Physics Tools</h3>
+      <p>Mathematics and physics utilities under development.</p>
+      <a href="#">Coming Soon</a>
+    </div>
+
   </div>
-
-  <nav>
-    <a href="modules/log/index.html">LOG</a>
-    <a href="modules/index.html">PROJECT</a>
-    <a href="modules/philosophy/index.html">PHILOSOPHY</a>
-  </nav>
-
-  <script src="assets/js/starfield.js"></script>
 
 </body>
 </html>
