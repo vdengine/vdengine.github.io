@@ -8,19 +8,19 @@
   <style>
     .periodic-table {
       display: grid;
-      grid-template-columns: repeat(18, 60px);
+      grid-template-columns: repeat(18, minmax(40px, 1fr));
       gap: 4px;
       justify-content: center;
       margin-top: 40px;
     }
 
     .cell {
-      width: 60px;
+      aspect-ratio: 1 / 1;
       height: 60px;
       background: #1e293b;
       color: white;
       display: flex;
-      justify-content: center;
+      
       align-items: center;
     }
   </style>
