@@ -1,1 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>VD Engine - Modules</title>
 
+  <style>
+    body {
+      margin: 0;
+      background-color: #000;
+      color: #e2e8f0;
+      font-family: Consolas, monospace;
+      padding: 60px 40px;
+    }
+
+    h1 {
+      font-size: 32px;
+      margin-bottom: 40px;
+      letter-spacing: 2px;
+    }
+
+    .module-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 30px;
+    }
+
+    .module-card {
+      border: 1px solid #1f2937;
+      padding: 20px;
+      transition: 0.3s;
+      background-color: #0a0a0a;
+    }
+
+    .module-card:hover {
+      border-color: #66ccff;
+      transform: translateY(-5px);
+    }
+
+    .module-card h3 {
+      margin-top: 0;
+      margin-bottom: 10px;
+    }
+
+    .module-card p {
+      font-size: 14px;
+      opacity: 0.7;
+    }
+
+    .module-card a {
+      display: inline-block;
+      margin-top: 10px;
+      text-decoration: none;
+      color: #66ccff;
+      font-size: 14px;
+    }
+
+    .back-link {
+      display: inline-block;
+      margin-bottom: 40px;
+      text-decoration: none;
+      color: #94a3b8;
+      font-size: 14px;
+    }
+
+    .back-link:hover {
+      color: white;
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <a class="back-link" href="/">← Back to VD Engine</a>
+
+  <h1>PROJECT MODULES</h1>
+
+  <div class="module-grid">
+
+    <div class="module-card">
+      <h3>Periodic Table</h3>
+      <p>Interactive chemistry reference and element exploration.</p>
+      <a href="periodic-table/index.html">Enter Module →</a>
+    </div>
+
+    <div class="module-card">
+      <h3>Chemistry Lab</h3>
+      <p>Future simulation experiments and reaction modeling.</p>
+      <a href="#">Coming Soon</a>
+    </div>
+
+    <div class="module-card">
+      <h3>Physics Tools</h3>
+      <p>Mathematics and physics utilities under development.</p>
+      <a href="#">Coming Soon</a>
+    </div>
+
+  </div>
+
+</body>
+</html>
