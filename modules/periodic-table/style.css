@@ -1,1 +1,5 @@
-
+.periodic-table {
+  display: grid;
+  grid-template-columns: repeat(18, 60px);
+  gap: 4px;
+}
