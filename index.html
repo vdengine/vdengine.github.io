@@ -1,111 +1,194 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>VD Engine</title>
+
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      background-color: #000000;
+      color: #e2e8f0;
+      font-family: Consolas, monospace;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    h1 {
+      font-size: 40px;
+      letter-spacing: 2px;
+      margin-bottom: 10px;
+      position: relative;
+      z-index: 1;
+    }
+
+    p {
+      opacity: 0.7;
+      font-size: 16px;
+      position: relative;
+      z-index: 1;
+    }
+
+    nav {
+      position: absolute;
+      bottom: 40px;
+      display: flex;
+      gap: 40px;
+      z-index: 1;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: #94a3b8;
+      font-size: 14px;
+      letter-spacing: 2px;
+      transition: 0.3s;
+    }
+
+    nav a:hover {
+      color: white;
+    }
+
+    canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 0;
+    }
+  </style>
+</head>
+
+<body>
+
+  <canvas id="stars"></canvas>
+
+  <div>
+    <h1>VD Engine 2026</h1>
+    <p>Human × AI Co-Engineering Core</p>
+  </div>
+
+  <nav>
+    <a href="#">LOG</a>
+    <a href="#">PROJECT</a>
+    <a href="#">PHILOSOPHY</a>
+  </nav>
+
 <script>
-const canvas = document.getElementById("stars");
-const ctx = canvas.getContext("2d");
+window.addEventListener("load", () => {
 
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
+  const canvas = document.getElementById("stars");
+  const ctx = canvas.getContext("2d");
 
-let centerX = canvas.width / 2;
-let centerY = canvas.height / 2;
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
 
-let stars = [];
-let specialStar = null;  // H2O 星
+  let centerX = canvas.width / 2;
+  let centerY = canvas.height / 2;
 
-function createStar() {
-  return {
-    x: (Math.random() - 0.5) * canvas.width,
-    y: (Math.random() - 0.5) * canvas.height,
-    z: Math.random() * canvas.width,
-    color: Math.random() > 0.9 ? "#a8c8ff" : "#ffffff"
-  };
-}
+  let stars = [];
+  let specialStar = null;
 
-for (let i = 0; i < 400; i++) {
-  stars.push(createStar());
-}
-
-function draw() {
-
-  ctx.fillStyle = "#000000";
-  ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-  stars.forEach((star, i) => {
-
-    star.z -= 2;
-
-    if (star.z <= 0) {
-      stars[i] = createStar();
-      stars[i].z = canvas.width;
-    }
-
-    let k = 128.0 / star.z;
-    let x = star.x * k + centerX;
-    let y = star.y * k + centerY;
-
-    if (x >= 0 && x <= canvas.width && y >= 0 && y <= canvas.height) {
-
-      let size = (1 - star.z / canvas.width) * 3;
-
-      ctx.fillStyle = star.color;
-      ctx.beginPath();
-      ctx.arc(x, y, size, 0, Math.PI * 2);
-      ctx.fill();
-    }
-
-  });
-
-// --- 特殊 H2O 星 ---
-if (specialStar) {
-
-  specialStar.life--;
-
-  ctx.save();   // 👈 加這行
-  ctx.globalAlpha = 0.9;
-  ctx.fillStyle = "#66ccff";
-
-  ctx.beginPath();
-  ctx.arc(specialStar.x, specialStar.y, specialStar.size, 0, Math.PI * 2);
-  ctx.fill();
-
-  ctx.restore();  // 👈 加這行
-
-  specialStar.y -= 0.5;
-
-  if (specialStar.life <= 0) {
-    specialStar = null;
-  }
-}
-
-  requestAnimationFrame(draw);
-}
-
-draw();
-
-
-// 🔒 密技監聽
-let inputBuffer = "";
-const secretCode = "vd2026";
-
-document.addEventListener("keydown", (e) => {
-
-  inputBuffer += e.key.toLowerCase();
-
-  if (inputBuffer.length > secretCode.length) {
-    inputBuffer = inputBuffer.slice(-secretCode.length);
-  }
-
-  if (inputBuffer === secretCode) {
-
-    // 生成水星星
-    specialStar = {
-      x: centerX,
-      y: centerY,
-      size: 15,
-      life: 480  // 約 8 秒 (60fps)
+  function createStar() {
+    return {
+      x: (Math.random() - 0.5) * canvas.width,
+      y: (Math.random() - 0.5) * canvas.height,
+      z: Math.random() * canvas.width,
+      color: Math.random() > 0.9 ? "#a8c8ff" : "#ffffff"
     };
-
-    inputBuffer = "";
   }
+
+  for (let i = 0; i < 400; i++) {
+    stars.push(createStar());
+  }
+
+  function draw() {
+
+    ctx.fillStyle = "#000000";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    stars.forEach((star, i) => {
+
+      star.z -= 2;
+
+      if (star.z <= 0) {
+        stars[i] = createStar();
+        stars[i].z = canvas.width;
+      }
+
+      let k = 128.0 / star.z;
+      let x = star.x * k + centerX;
+      let y = star.y * k + centerY;
+
+      if (x >= 0 && x <= canvas.width && y >= 0 && y <= canvas.height) {
+
+        let size = (1 - star.z / canvas.width) * 3;
+
+        ctx.fillStyle = star.color;
+        ctx.beginPath();
+        ctx.arc(x, y, size, 0, Math.PI * 2);
+        ctx.fill();
+      }
+    });
+
+    // --- 水星星 ---
+    if (specialStar) {
+
+      specialStar.life--;
+
+      ctx.save();
+      ctx.globalAlpha = 0.9;
+      ctx.fillStyle = "#66ccff";
+
+      ctx.beginPath();
+      ctx.arc(specialStar.x, specialStar.y, specialStar.size, 0, Math.PI * 2);
+      ctx.fill();
+
+      ctx.restore();
+
+      specialStar.y -= 0.5;
+
+      if (specialStar.life <= 0) {
+        specialStar = null;
+      }
+    }
+
+    requestAnimationFrame(draw);
+  }
+
+  draw();
+
+  // 🔒 密技
+  let inputBuffer = "";
+  const secretCode = "vd2026";
+
+  document.addEventListener("keydown", (e) => {
+
+    inputBuffer += e.key.toLowerCase();
+
+    if (inputBuffer.length > secretCode.length) {
+      inputBuffer = inputBuffer.slice(-secretCode.length);
+    }
+
+    if (inputBuffer === secretCode) {
+
+      specialStar = {
+        x: centerX,
+        y: centerY,
+        size: 15,
+        life: 480
+      };
+
+      inputBuffer = "";
+    }
+  });
 
 });
 </script>
+
+</body>
+</html>
