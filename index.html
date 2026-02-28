@@ -54,22 +54,27 @@ function draw() {
 
   });
 
-  // --- 特殊 H2O 星 ---
-  if (specialStar) {
-    specialStar.life--;
+// --- 特殊 H2O 星 ---
+if (specialStar) {
 
-    ctx.fillStyle = "#66ccff";
-    ctx.globalAlpha = 0.9;
-    ctx.beginPath();
-    ctx.arc(specialStar.x, specialStar.y, specialStar.size, 0, Math.PI * 2);
-    ctx.fill();
+  specialStar.life--;
 
-    specialStar.y -= 0.5;  // 慢慢漂浮
+  ctx.save();   // 👈 加這行
+  ctx.globalAlpha = 0.9;
+  ctx.fillStyle = "#66ccff";
 
-    if (specialStar.life <= 0) {
-      specialStar = null;
-    }
+  ctx.beginPath();
+  ctx.arc(specialStar.x, specialStar.y, specialStar.size, 0, Math.PI * 2);
+  ctx.fill();
+
+  ctx.restore();  // 👈 加這行
+
+  specialStar.y -= 0.5;
+
+  if (specialStar.life <= 0) {
+    specialStar = null;
   }
+}
 
   requestAnimationFrame(draw);
 }
