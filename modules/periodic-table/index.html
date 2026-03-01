@@ -1,36 +1,63 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Periodic Table</title>
+    <link rel="stylesheet" href="style.css" />
 
-<head>
-  <meta charset="UTF-8">
-  <title>Periodic Table</title>
+    <style>
+      .periodic-table {
+        display: grid;
+        grid-template-columns: repeat(18, 70px);
+        gap: 4px;
+        margin: 40px auto;
+        width: fit-content;
+      }
 
-  <style>
-    .periodic-table {
-      display: grid;
-      grid-template-columns: repeat(18, 1fr);
-      gap: 4px;
-      margin-top: 40px;
-      width: 100%;
-    }
+      .cell {
+        position: relative;
+        aspect-ratio: 1 / 1;
+        max-width: 60px;
+        background: #1e293b;
+        color: white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
 
-    .cell {
-      aspect-ratio: 1 / 1;
-      max-width: 60px;
-      background: #1e293b;
-      color: white;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-  </style>
-</head>
+      .number {
+        position: absolute;
+        top: 4px;
+        left: 6px;
+        font-size: 10px;
+        opacity: 0.7;
+      }
 
-<body>
-  <div class="periodic-table">
-    <div class="cell" style="grid-column: 1;">1</div>
-    <div class="cell" style="grid-column: 18;">2</div>
-  </div>
-</body>
+      .mass {
+        position: absolute;
+        bottom: 4px;
+        right: 6px;
+        font-size: 10px;
+        opacity: 0.7;
+      }
 
+      .symbol {
+        font-size: 18px;
+        font-weight: bold;
+      }
+
+      body {
+        margin: 0;
+        background: #0b0f1a;
+        display: flex;
+        justify-content: center;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="periodic-table"></div>
+    <div id="info-panel" class="info-panel"></div>
+    <script type="module" src="render.js"></script>
+  </body>
 </html>

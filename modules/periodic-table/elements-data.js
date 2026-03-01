@@ -1,0 +1,43 @@
+export const elements = [
+  { number: 1, symbol: "H", mass: "1.008", col: 1, row: 1, block: "s" },
+  { number: 2, symbol: "He", mass: "4.0026", col: 18, row: 1, block: "s" },
+
+  { number: 3, symbol: "Li", mass: "6.94", col: 1, row: 2, block: "s" },
+  { number: 4, symbol: "Be", mass: "9.0122", col: 2, row: 2, block: "s" },
+  { number: 5, symbol: "B", mass: "10.81", col: 13, row: 2, block: "p" },
+  { number: 6, symbol: "C", mass: "12.011", col: 14, row: 2, block: "p" },
+  { number: 7, symbol: "N", mass: "14.007", col: 15, row: 2, block: "p" },
+  { number: 8, symbol: "O", mass: "15.999", col: 16, row: 2, block: "p" },
+  { number: 9, symbol: "F", mass: "18.998", col: 17, row: 2, block: "p" },
+  { number: 10, symbol: "Ne", mass: "20.180", col: 18, row: 2, block: "p" },
+
+  { number: 11, symbol: "Na", mass: "22.990", col: 1, row: 3, block: "s" },
+  { number: 12, symbol: "Mg", mass: "24.305", col: 2, row: 3, block: "s" },
+  { number: 13, symbol: "Al", mass: "26.982", col: 13, row: 3, block: "p" },
+  { number: 14, symbol: "Si", mass: "28.085", col: 14, row: 3, block: "p" },
+  { number: 15, symbol: "P", mass: "30.974", col: 15, row: 3, block: "p" },
+  { number: 16, symbol: "S", mass: "32.06", col: 16, row: 3, block: "p" },
+  { number: 17, symbol: "Cl", mass: "35.45", col: 17, row: 3, block: "p" },
+  { number: 18, symbol: "Ar", mass: "39.948", col: 18, row: 3, block: "p" },
+
+  // 第四週期
+  { number: 19, symbol: "K",  mass: "39.098", col: 1,  row: 4, block: "s" },
+  { number: 20, symbol: "Ca", mass: "40.078", col: 2,  row: 4, block: "s" },
+  { number: 21, symbol: "Sc", mass: "44.956", col: 3,  row: 4, block: "d" },
+  { number: 22, symbol: "Ti", mass: "47.867", col: 4,  row: 4, block: "d" },
+  { number: 23, symbol: "V",  mass: "50.942", col: 5,  row: 4, block: "d" },
+  { number: 24, symbol: "Cr", mass: "51.996", col: 6,  row: 4, block: "d" },
+  { number: 25, symbol: "Mn", mass: "54.938", col: 7,  row: 4, block: "d" },
+  { number: 26, symbol: "Fe", mass: "55.845", col: 8,  row: 4, block: "d" },
+  { number: 27, symbol: "Co", mass: "58.933", col: 9,  row: 4, block: "d" },
+  { number: 28, symbol: "Ni", mass: "58.693", col: 10, row: 4, block: "d" },
+  { number: 29, symbol: "Cu", mass: "63.546", col: 11, row: 4, block: "d" },
+  { number: 30, symbol: "Zn", mass: "65.38",  col: 12, row: 4, block: "d" },
+
+  { number: 31, symbol: "Ga", mass: "69.723", col: 13, row: 4, block: "p" },
+  { number: 32, symbol: "Ge", mass: "72.630", col: 14, row: 4, block: "p" },
+  { number: 33, symbol: "As", mass: "74.922", col: 15, row: 4, block: "p" },
+  { number: 34, symbol: "Se", mass: "78.971", col: 16, row: 4, block: "p" },
+  { number: 35, symbol: "Br", mass: "79.904", col: 17, row: 4, block: "p" },
+  { number: 36, symbol: "Kr", mass: "83.798", col: 18, row: 4, block: "p" },
+];

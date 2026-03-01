@@ -3,3 +3,39 @@
   grid-template-columns: repeat(18, 60px);
   gap: 4px;
 }
+
+.cell {
+  position: relative;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.cell:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 15px rgba(100,150,255,0.5);
+  z-index: 10;
+}
+
+.info-panel {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  background: #1e293b;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 0 20px rgba(100,150,255,0.3);
+  color: white;
+  min-width: 220px;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: 0.3s ease;
+}
+
+.info-panel.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.cell.s { background: #1e3a8a; }
+.cell.p { background: #7c2d12; }
+.cell.s:hover { box-shadow: 0 0 20px rgba(59,130,246,0.6); }
+.cell.p:hover { box-shadow: 0 0 20px rgba(249,115,22,0.6); }
